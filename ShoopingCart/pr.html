@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooping Cart</title> 
+    <link rel="stylesheet" href ="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <!-- <i class="fas fa-plus"></i>
+    <i class="fas fa-minus"></i> -->
+<div class="container">
+    <h1 class="h1"> Mahfuza's Kitten House</h1>
+    <div class="card">
+        <div class="card_img">
+            <img src ="img/cat1.jpg" class="img">
+        </div>
+        <div class="card_title">
+            <h3> Pursian Kitten</h3>
+            <h3>Size: 6 inch</h3>
+            <h3 class="price">Price: $<span id="price">200</span></h3>
+
+            <i class="fas fa-plus icon" onclick="increment('countInput','price','itemPrice')"></i>
+            <input class="input" type="button" value="0" id="countInput" >
+            <i class="fas fa-minus icon" onclick="decrement('countInput','price','itemPrice')"></i>
+            <span class="item">Your item $<span id="itemPrice" >00</span></span>
+            
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    <hr class="hrStyle">
+    <div class="card">
+        <div class="card_img">
+            <img src ="img/cat2.jpg" class="img">
+        </div>
+        <div class="card_title">
+            <h3> Felis cat </h3>
+            <h3>Size: 7 inch</h3>
+            <h3 class="price">Price: $<span id="price1">200</span></h3>
+
+            <i class="fas fa-plus icon" onclick="increment('countInput1','price1','itemPrice1')" ></i>
+            <input class="input" type="button" value="0"  id="countInput1">
+            <i class="fas fa-minus icon"  onclick="decrement('countInput1','price1','itemPrice1')" ></i>
+            <span class="item">Your item $<span id="itemPrice1">00</span></span>
+            
+        </div>
+    </div>
+
+    
+    
+  
+</div>
+<div class="fixed">
+
+        <h1 class="total">Total Amount </h1>
+        <h2>Product Amount : $<span id="product_amount">00 </span></h2>
+        <h2>Delivery Charge:$<span id="charge">20</span></h2>
+        ----------------------------------------------------------
+        -----------------------------------------------------
+        <h2>Total Product Amount: $<span id="total_amount"> 00</span></h2>
+        <hr> <br><br><br>
+        <div class="cupon" id="cupon_main_Div">
+            <h4 class="cupon">Your Cupon code is</h4><br>
+        <h4 class="code">Your code is Ismail</h4>
+        <input class="cupon_inpt" type="text" placeholder="Enter cupon" id="cuponInput">
+        <br>
+        <br>
+        <button class="apply" id="applyBtn">Apply</button>
+        </div>
+        
+</div>
+
+
+<script>
+    function increment(indec,prc,itm){
+       var count = document.getElementById(indec);
+       var pric = document.getElementById(prc);
+       var item = document.getElementById(itm);
+       var product_amount= document.getElementById("product_amount");
+       var charge =document.getElementById("charge");
+       var total_amount = document.getElementById("total_amount");
+
+
+
+       if(count.value >= 5 ){
+        count.value=5;
+        alert("ONly 5 products allow");
+       }else{
+        count.value++
+        var result =parseInt(pric.innerHTML) +parseInt(item.innerHTML)  ;
+        item.innerHTML =result;
+        var newProductAmount = parseInt(pric.innerHTML) + parseInt(product_amount.innerHTML);
+        product_amount.innerHTML = newProductAmount;
+
+        var nwTotal = parseInt(product_amount.innerHTML)+ parseInt(charge.innerHTML);
+        total_amount.innerHTML = nwTotal;
+       } 
+    }
+
+
+
+    function decrement(dec,prc,itm){
+       var count = document.getElementById(dec);
+       var pric = document.getElementById(prc);
+       var item = document.getElementById(itm);
+       var product_amount= document.getElementById("product_amount");
+       var charge =document.getElementById("charge");
+       var total_amount = document.getElementById("total_amount");
+
+
+
+       if(count.value <=0){
+        count=0;
+        alert("Add Products");
+       }else{
+        count.value--
+        var result = parseInt(item.innerHTML) - parseInt(pric.innerHTML)  ;
+        item.innerHTML =result;
+        var newProductAmount = parseInt(product_amount.innerHTML) - parseInt(pric.innerHTML) ;
+        product_amount.innerHTML = newProductAmount;
+   
+        var nwTotal = parseInt(product_amount.innerHTML)- parseInt(pric.innerHTML);
+        total_amount.innerHTML = nwTotal;
+   
+       } 
+    }
+   
+
+   
+</script>
+
+
+
+
+
+
+</body>
+</html>

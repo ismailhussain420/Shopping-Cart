@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooping Cart</title> 
+    <link rel="stylesheet" href ="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <!-- <i class="fas fa-plus"></i>
+    <i class="fas fa-minus"></i> -->
+<div class="container">
+    <h1 class="h1"> Mahfuza's Kitten House</h1>
+    <div class="card">
+        <div class="card_img">
+            <img src ="img/cat1.jpg" class="img">
+        </div>
+        <div class="card_title">
+            <h3> Pursian Kitten</h3>
+            <h3>Size: 6 inch</h3>
+            <h3 class="price">Price: $<span id="price">200</span></h3>
+
+            <i class="fas fa-plus icon" onclick="incremeant('count','price','item')"></i>
+            <input class="input" type="button" value="0" id="count">
+            <i class="fas fa-minus icon" onclick="decrement('count','price','item')"></i>
+            <span class="item">Your item $<span id="item">00</span></span>
+            
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    <hr class="hrStyle">
+    <div class="card">
+        <div class="card_img">
+            <img src ="img/cat2.jpg" class="img">
+        </div>
+        <div class="card_title">
+            <h3> Felis cat </h3>
+            <h3>Size: 7 inch</h3>
+            <h3 class="price">Price: $<span id="price1">200</span></h3>
+
+            <i class="fas fa-plus icon" onclick="incremeant('count1','price1','item1')"></i>
+            <input class="input" type="button" value="0" id="count1">
+            <i class="fas fa-minus icon" onclick="decrement('count1','price1','item1')"></i>
+            <span class="item">Your item $<span id="item1">00</span></span>
+            
+        </div>
+    </div>
+
+    
+    
+  
+</div>
+<div class="fixed">
+
+        <h1 class="total">Total Amount </h1>
+        <h2>Product Amount : $<span id="product_amount">00 </span></h2>
+        <h2>Delivery Charge:$<span id="charge">20</span></h2>
+        ----------------------------------------------------------
+        -----------------------------------------------------
+        <h2>Total Product Amount: $<span id="total_amount"> 00</span></h2>
+        <hr> <br><br><br>
+        <div class="cupon" id="cupon_main_Div">
+            <h4 class="cupon">Your Cupon code is</h4><br>
+        <h4 class="code">Your code is Ismail</h4>
+        <input class="cupon_inpt" type="text" placeholder="Enter cupon" id="cuponInput">
+        <br>
+        <br>
+        <button class="apply" id="applyBtn">Apply</button>
+        </div>
+        
+</div>
+    <script>
+        function incremeant(incdec,prc,itm){
+            var count = document.getElementById(incdec);
+            
+            var price = document.getElementById(prc);
+            var item = document.getElementById(itm);
+            var total_Amount= document.getElementById("total_Amount");
+            var charge = document.getElementById("charge").innerHTML;
+            var total_amount = document.getElementById("total_amount").innerHTML;
+      
+          
+           if( count.value >= 5){
+            count.value =5;
+            alert("Only five products allow");
+           }else{
+            count.value++;
+
+            //item jug price er sate
+            var result = parseInt(price.innerHTML) + parseInt(item.innerHTML);
+            item.innerHTML = result;
+            //Total product amount  Amoun
+            var newProductAmount = parseInt(price.innerHTML) + parseInt(product_amount.innerHTML);
+            document.getElementById("product_amount").innerHTML = newProductAmount;
+            console.log(newProductAmount);
+
+            //charge + total product
+
+            var newTotal = newProductAmount + parseInt(charge);
+            document.getElementById("total_amount").innerHTML = newTotal;
+
+            //cupon
+            var cupon_main_Div = document.getElementById("cupon_main_Div");
+            if(newTotal>=500){
+                cupon_main_Div.style.display="block";
+            }
+            
+            
+
+
+           }
+        }
+        //For Decrement
+
+        function decrement(incdec,prc,itm){
+            var count = document.getElementById(incdec);
+            var price = document.getElementById(prc);
+            var item = document.getElementById(itm);
+            var product_amount= document.getElementById("product_amount");
+            var charge = document.getElementById("charge").innerHTML;
+            var total_amount = document.getElementById("total_amount").innerHTML;
+
+
+             //item biug 
+             var result = parseInt(item.innerHTML)-parseInt(price.innerHTML) ;
+            item.innerHTML = result;
+            //total item price
+            var newProductAmount =parseInt(product_amount.innerHTML)  - parseInt(price.innerHTML) ;
+            document.getElementById("product_amount").innerHTML = newProductAmount;
+
+               //charge + total product
+
+               var newTotal = newProductAmount + parseInt(charge);
+            document.getElementById("total_amount").innerHTML = newTotal;
+
+
+           
+
+           
+
+            if( count.value <= 0){
+            count.value =0;
+            alert("Add Products");
+           }else{
+            count.value--;
+           }
+
+            
+
+
+        }
+
+        var cupon_main_Div = document.getElementById("cupon_main_Div");
+        cupon_main_Div.style.display="none";
+
+        var applyBtn =document.getElementById("applyBtn");
+     
+        applyBtn.addEventListener("click",function(){
+            var total_amount = document.getElementById("total_amount").innerHTML;
+            var cupon_inpt = document.getElementById("cuponInput").value;
+
+            if(cupon_inpt === 'Ismail'){
+
+                var nwTotal = parseInt(total_amount) - 50;
+                document.getElementById("total_amount").innerHTML =nwTotal;
+                alert("congratlations");
+                cupon_main_Div.style.display="none";
+            
+
+
+            }else{
+                alert("Cupon not matched");
+            }
+
+        })
+
+    </script>
+</body>
+</html>
